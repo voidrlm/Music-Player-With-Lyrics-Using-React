@@ -8,6 +8,7 @@
 .section-right {
   flex: 1;
   padding: 20px;
+
   /* Adjust the width, padding, and other styles as needed */
 }
 
@@ -18,5 +19,7 @@
 
 .section-right {
   background-color: #fff;
+  height: 95vh;
+  overflow: auto;
   /* Right section background color */
 }
