@@ -11,6 +11,7 @@ export const musicDB = [
     id: 5312,
     title: "Butterfly Effect",
     artist: "Travis Scott",
+    album: "Astroworld",
     src: "https://pagalworld.social/files/download/id/5312",
     art: "https://upload.wikimedia.org/wikipedia/en/3/33/Travis_Scott_Butterfly_Effect.jpg",
   },

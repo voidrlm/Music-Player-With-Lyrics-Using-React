@@ -6,6 +6,7 @@ import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { musicDB } from "../../resources/musicData";
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
   const audioRef = useRef(null);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
@@ -25,11 +26,13 @@ const MusicPlayer = () => {
     audioRef.current.src = musicDB[nextIndex].src;
     audioRef.current.load();
 
-    // Use the canplaythrough event to play after the new audio is ready
     audioRef.current.oncanplaythrough = () => {
       audioRef.current.play();
-      audioRef.current.oncanplaythrough = null; // Remove the event listener to prevent multiple plays
+      audioRef.current.oncanplaythrough = null;
+      setLoading(false); // Set loading to false when the audio is ready
     };
+
+    setLoading(true); // Set loading to true while the new audio is loading
   };
 
   const playPrev = () => {
@@ -43,14 +46,20 @@ const MusicPlayer = () => {
     audioRef.current.oncanplaythrough = () => {
       audioRef.current.play();
       audioRef.current.oncanplaythrough = null;
+      setLoading(false); // Set loading to false when the audio is ready
     };
-  };
 
+    setLoading(true); // Set loading to true while the new audio is loading
+  };
   return (
     <div className="music-player">
       <audio ref={audioRef} src={musicDB[currentSongIndex].src}></audio>
       <div className="component">
-        <h2 className="playerTitle">{musicDB[currentSongIndex].album}</h2>
+        <h2 className="playerTitle">
+          {loading && currentSongIndex !== 0
+            ? "Loading..."
+            : musicDB[currentSongIndex].album}
+        </h2>
         <div className="musicCover">
           <img className="albumArtImage" src={musicDB[currentSongIndex].art} />
         </div>
