@@ -3,6 +3,7 @@ import "./lyrics.css";
 import { musicDB } from "../../resources/musicData";
 const Lyrics = (props) => {
   const { trackId, currentTime } = props;
+  console.log(currentTime);
   var lyrics =
     trackId !== undefined
       ? musicDB.filter((track) => track.id === trackId)[0].lyrics || []
