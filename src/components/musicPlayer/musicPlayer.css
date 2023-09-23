@@ -31,12 +31,13 @@
     border-radius: 10%;
     text-align: center;
 
+
 }
 
 .albumArtImage {
     width: 350px;
     height: 350px;
-    border-radius: 25px;
+    border-radius: 25px
 }
 
 .playButton {

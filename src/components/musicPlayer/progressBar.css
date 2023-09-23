@@ -1,29 +1,32 @@
 .progress-container {
-    width: 100%;
+    width: 55%;
+
+    margin: 0 auto;
     padding-top: 20px;
 }
 
 .progress {
-    height: 4px;
+    height: 10px;
     background-color: #ccc;
     cursor: pointer;
-
-
+    border-radius: 25px;
 }
 
 .progress-filled {
     height: 100%;
     background-color: #007bff;
-
+    border-radius: 25px;
 }
 
 .track-info {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-top: 5px;
 }
 
 .current-time,
 .duration {
     font-size: 14px;
     color: #777;
+    font-weight: 700;
 }

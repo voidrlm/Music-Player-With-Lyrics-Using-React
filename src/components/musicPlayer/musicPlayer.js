@@ -120,7 +120,7 @@ const MusicPlayer = () => {
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-        </div>{" "}
+        </div>
         <div className="track-info">
           <div className="current-time">{formatTime(currentTime)}</div>
           <div className="duration">{formatTime(duration)}</div>
