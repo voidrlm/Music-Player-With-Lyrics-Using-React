@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./musicPlayer.css";
+import "./progressBar.css";
 import { IconContext } from "react-icons";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
@@ -9,6 +10,8 @@ const MusicPlayer = () => {
   const [loading, setLoading] = useState(true);
   const audioRef = useRef(null);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -51,9 +54,45 @@ const MusicPlayer = () => {
 
     setLoading(true); // Set loading to true while the new audio is loading
   };
+  useEffect(() => {
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
+
+    return () => {
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current.removeEventListener(
+        "loadedmetadata",
+        handleLoadedMetadata
+      );
+    };
+  }, []);
+  const handleTimeUpdate = () => {
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  const handleLoadedMetadata = () => {
+    setDuration(audioRef.current.duration);
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  const handleSeek = (newTime) => {
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+  const progress = (currentTime / duration) * 100 || 0;
   return (
     <div className="music-player">
-      <audio ref={audioRef} src={musicDB[currentSongIndex].src}></audio>
+      <audio
+        ref={audioRef}
+        src={musicDB[currentSongIndex].src}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+      ></audio>
       <div className="component">
         <h2 className="playerTitle">
           {loading && currentSongIndex !== 0
@@ -62,6 +101,25 @@ const MusicPlayer = () => {
         </h2>
         <div className="musicCover">
           <img className="albumArtImage" src={musicDB[currentSongIndex].art} />
+        </div>
+        <div className="progress-container">
+          <div
+            className="progress"
+            onClick={(e) =>
+              handleSeek(
+                (e.nativeEvent.offsetX / e.target.offsetWidth) * duration
+              )
+            }
+          >
+            <div
+              className="progress-filled"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+        </div>{" "}
+        <div className="track-info">
+          <div className="current-time">{formatTime(currentTime)}</div>
+          <div className="duration">{formatTime(duration)}</div>
         </div>
         <div className="musicDetails">
           <h3 className="title">{musicDB[currentSongIndex].title}</h3>

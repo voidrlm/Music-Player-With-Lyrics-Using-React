@@ -1,0 +1,29 @@
+.progress-container {
+    width: 100%;
+    padding-top: 20px;
+}
+
+.progress {
+    height: 4px;
+    background-color: #ccc;
+    cursor: pointer;
+
+
+}
+
+.progress-filled {
+    height: 100%;
+    background-color: #007bff;
+
+}
+
+.track-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-time,
+.duration {
+    font-size: 14px;
+    color: #777;
+}
