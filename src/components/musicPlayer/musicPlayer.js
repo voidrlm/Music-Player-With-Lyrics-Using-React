@@ -5,7 +5,6 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
@@ -31,13 +30,13 @@ const MusicPlayer = () => {
             </IconContext.Provider>
           </button>
           {!isPlaying ? (
-            <button className="playButton">
+            <button className="playButton" onClick={togglePlay}>
               <IconContext.Provider value={{ size: "3em", color: "#000000" }}>
                 <AiFillPlayCircle />
               </IconContext.Provider>
             </button>
           ) : (
-            <button className="playButton">
+            <button className="playButton" onClick={togglePlay}>
               <IconContext.Provider value={{ size: "3em", color: "#000000" }}>
                 <AiFillPauseCircle />
               </IconContext.Provider>
