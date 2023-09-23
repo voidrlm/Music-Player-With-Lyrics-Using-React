@@ -58,14 +58,18 @@ const MusicPlayer = () => {
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
     audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
 
+    // Add an event listener for the 'ended' event to autoplay the next song
+    audioRef.current.addEventListener("ended", playNext);
+
     return () => {
       audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
       audioRef.current.removeEventListener(
         "loadedmetadata",
         handleLoadedMetadata
       );
+      audioRef.current.removeEventListener("ended", playNext);
     };
-  }, []);
+  }, [currentSongIndex, playNext]);
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
   };
