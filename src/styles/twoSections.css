@@ -1,0 +1,22 @@
+.two-sections-layout {
+  display: flex;
+  height: 100vh;
+  /* Adjust the height as needed */
+}
+
+.section-left,
+.section-right {
+  flex: 1;
+  padding: 20px;
+  /* Adjust the width, padding, and other styles as needed */
+}
+
+.section-left {
+  background-color: #f0f0f0;
+  /* Left section background color */
+}
+
+.section-right {
+  background-color: #fff;
+  /* Right section background color */
+}
