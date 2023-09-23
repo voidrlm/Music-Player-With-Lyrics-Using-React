@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { musicDB } from "../../resources/musicData";
-const MusicPlayer = () => {
+const MusicPlayer = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
   const audioRef = useRef(null);
@@ -54,6 +54,20 @@ const MusicPlayer = () => {
 
     setLoading(true); // Set loading to true while the new audio is loading
   };
+  //USE EFFECT FOR SENDING CURRENT TIME TO PARENT COMPONENT FOR LYRICS
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Call the callback function in the parent component with the data
+      props.getDataForLyrics({
+        trackId: musicDB[currentSongIndex].id,
+        currentTime: currentTime,
+      });
+    }, 500); // Update data every 1 second
+
+    // Cleanup the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, [props]);
+  //USE EFFECT FOR TRACK SEEKING
   useEffect(() => {
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
     audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
@@ -69,7 +83,7 @@ const MusicPlayer = () => {
       );
       audioRef.current.removeEventListener("ended", playNext);
     };
-  }, [currentSongIndex, playNext]);
+  }, [currentSongIndex, playNext, props]);
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
   };
