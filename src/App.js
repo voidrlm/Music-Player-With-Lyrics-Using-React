@@ -8,7 +8,6 @@ function App() {
 
   // Function to handle data updates from the child component
   const handleLyricsDataFromChild = (data) => {
-    console.log(data);
     setDataForLyrics(data);
   };
   return (
