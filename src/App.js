@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import MusicPlayer from "./components/musicPlayer/musicPlayer";
+import "./styles/twoSections.css";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="two-sections-layout">
+        <div className="section-left">{<MusicPlayer />}</div>
+        <div className="section-right">
+          {/* Content for the right section */}
+        </div>
+      </div>
     </div>
   );
 }
