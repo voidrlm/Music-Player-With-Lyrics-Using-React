@@ -51,6 +51,10 @@
     color: #4f4f4f;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .time {
     margin: 0 auto;
     width: 80%;
