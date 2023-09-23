@@ -1,6 +1,9 @@
 .music-player {
     display: flex;
     align-items: center;
+    /* Vertically center the child elements */
+    justify-content: center;
+    height: 100%;
     padding: 10px;
     background-color: #ffffff;
     border-radius: 25px;
@@ -54,26 +57,6 @@
 
 .clickable {
     cursor: pointer;
-}
-
-
-
-.time {
-    margin: 0 auto;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    color: #828282;
-    font-size: smaller;
-}
-
-.timeline {
-    width: 80%;
-    background-color: #000000;
-}
-
-input[type="range"] {
-    background-color: #000000;
 }
 
 @media (max-width: 900px) {
