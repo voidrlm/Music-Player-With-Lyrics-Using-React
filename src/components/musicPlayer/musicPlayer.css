@@ -1,0 +1,76 @@
+.music-player {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 25px;
+
+}
+
+.playerTitle {
+    color: black;
+    text-align: center;
+}
+
+.musicDetails {
+    color: black;
+    text-align: center;
+}
+
+.musicControls {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.component {
+    background-color: white;
+    width: 100%;
+}
+
+.musicCover {
+    border-radius: 10%;
+    text-align: center;
+
+}
+
+.albumArtImage {
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+}
+
+.playButton {
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.subTitle {
+    margin-top: -1em;
+    color: #4f4f4f;
+}
+
+.time {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    color: #828282;
+    font-size: smaller;
+}
+
+.timeline {
+    width: 80%;
+    background-color: #000000;
+}
+
+input[type="range"] {
+    background-color: #000000;
+}
+
+@media (max-width: 900px) {
+    .component {
+        width: 50%;
+    }
+}
